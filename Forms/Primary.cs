@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -128,17 +128,17 @@ namespace DSLauncherV2
             }
             try
             {
-                WebClient webClient = new WebClient {CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore)};
-                webClient.DownloadFile(this.LauncherSettings.UserSettings.Config.RemotePatchLocation + "patchlist.xml",
-                    this.LauncherSettings.UserSettings.PatchListTempFile);
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)0xc00;
-                if (!string.IsNullOrWhiteSpace(this.LauncherSettings.UserSettings.Config.LauncherPatchLocation))
+                using (WebClient webClient = new WebClient { CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore) })
                 {
-                    webClient.DownloadFile(this.LauncherSettings.UserSettings.Config.LauncherPatchLocation,
-                        this.LauncherSettings.UserSettings.LauncherPatchFile);
+                    System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                    webClient.DownloadFile(this.LauncherSettings.UserSettings.Config.RemotePatchLocation + "patchlist.xml",
+                    this.LauncherSettings.UserSettings.PatchListTempFile);
+                    if (!string.IsNullOrWhiteSpace(this.LauncherSettings.UserSettings.Config.LauncherPatchLocation))
+                    {
+                        webClient.DownloadFile(this.LauncherSettings.UserSettings.Config.LauncherPatchLocation,
+                            this.LauncherSettings.UserSettings.LauncherPatchFile);
+                    }
                 }
-
-                webClient.Dispose();
             }
             catch (Exception)
             {
@@ -157,16 +157,17 @@ namespace DSLauncherV2
         {
             try
             {
-                WebClient webClient = new WebClient { CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore) };
-                webClient.DownloadFile(this.LauncherSettings.UserSettings.Config.RemotePatchLocation + "patchlist.xml",
-                    this.LauncherSettings.UserSettings.PatchListTempFile);
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)0xc00;
-                if (!string.IsNullOrWhiteSpace(this.LauncherSettings.UserSettings.Config.LauncherPatchLocation))
+                using (WebClient webClient = new WebClient { CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore) })
                 {
-                    webClient.DownloadFile(this.LauncherSettings.UserSettings.Config.LauncherPatchLocation,
-                        this.LauncherSettings.UserSettings.LauncherPatchFile);
+                    System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                    webClient.DownloadFile(this.LauncherSettings.UserSettings.Config.RemotePatchLocation + "patchlist.xml",
+                    this.LauncherSettings.UserSettings.PatchListTempFile);
+                    if (!string.IsNullOrWhiteSpace(this.LauncherSettings.UserSettings.Config.LauncherPatchLocation))
+                    {
+                        webClient.DownloadFile(this.LauncherSettings.UserSettings.Config.LauncherPatchLocation,
+                            this.LauncherSettings.UserSettings.LauncherPatchFile);
+                    }
                 }
-                webClient.Dispose();
                 this.launcherCheckerLabel.Invoke((Action) (() =>
                 {
                     this.launcherCheckerLabel.Text = "Checking for patches...";

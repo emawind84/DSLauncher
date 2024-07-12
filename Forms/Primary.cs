@@ -347,11 +347,8 @@ namespace DSLauncherV2
                     AccountsGrid.ClearSelection();
                     CNSImport.Capture = false;
                     CNSImport.DocumentText = currentAnnouncement;
-                    if (!string.IsNullOrEmpty(CNSImport.DocumentText))
-                    {
-                        CNSImport.Visible = true;
-                        CNSImport.AllowNavigation = true;
-                    }
+                    CNSImport.Visible = true;
+                    CNSImport.AllowNavigation = true;
 
                     if (this.LauncherSettings.UserSettings.RemoteLauncherVersion.CompareTo(
                         this.LauncherSettings.UserSettings.Config.LocalLauncherVersion) > 0)

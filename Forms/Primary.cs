@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -350,13 +350,13 @@ namespace DSLauncherV2
                     CNSImport.Visible = true;
                     CNSImport.AllowNavigation = true;
 
-                    if (this.LauncherSettings.UserSettings.RemoteLauncherVersion.CompareTo(
-                        this.LauncherSettings.UserSettings.Config.LocalLauncherVersion) > 0)
-                    {
-                        MetroMessageBox.Show(this, "A new patch is available. Press 'Ok' to continue.", "Patch Time!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        Process.Start(Directory.GetCurrentDirectory() + @"\DSSelfPatch.exe");
-                        Environment.Exit(0);
-                    }
+                    // if (this.LauncherSettings.UserSettings.RemoteLauncherVersion.CompareTo(
+                    //     this.LauncherSettings.UserSettings.Config.LocalLauncherVersion) > 0)
+                    // {
+                    //     MetroMessageBox.Show(this, "A new patch is available. Press 'Ok' to continue.", "Patch Time!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //     Process.Start(Directory.GetCurrentDirectory() + @"\DSSelfPatch.exe");
+                    //     Environment.Exit(0);
+                    // }
 
                     break;
                 case 5:
